@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
+  const [poses, setPoses] = useState([]);
+  const [selectedPose, setSelectedPose] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        'https://your-yoga-api.com/poses'
+      );
+      setPoses(result.data);
+    };
+    fetchData();
+  }, []);
+
+  const handlePoseSelect = (pose) => {
+    setSelectedPose(pose);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <h1>Yoga Poses</h1>
       </header>
+      <main>
+        <div className="pose-list">
+          {poses.map((pose) => (
+            <div key={pose.id} className="pose-item" onClick={() => handlePoseSelect(pose)}>
+              <img src={pose.image_url} alt={pose.name} />
+              <h2>{pose.name}</h2>
+            </div>
+          ))}
+        </div>
+        <div className="pose-details">
+          {selectedPose ? (
+            <>
+              <h2>{selectedPose.name}</h2>
+              <img src={selectedPose.image_url} alt={selectedPose.name} />
+              <p>{selectedPose.description}</p>
+            </>
+          ) : (
+            <p>Select a pose to see details</p>
+          )}
+        </div>
+      </main>
     </div>
   );
 }
 
 export default App;
+
