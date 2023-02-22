@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './App.css';
+
+import { useContext } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
+import Auth from './components/Auth';
+import Home from './components/Home';
+import AuthContext from './store/authContext';
 
 function App() {
   const [poses, setPoses] = useState([]);
@@ -18,10 +26,15 @@ function App() {
   const handlePoseSelect = (pose) => {
     setSelectedPose(pose);
   };
-
+  const authCtx = useContext(AuthContext);
   return (
     <div className="App">
-      <header>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/auth' element={!authCtx.token ? <Auth/> : <Navigate to='/'/>}/>
+        <Route path='*' element={<Navigate to='/'/>}/>
+        </Routes>
+      {/* <header>
         <h1>Yoga Poses</h1>
       </header>
       <main>
@@ -44,7 +57,7 @@ function App() {
             <p>Select a pose to see details</p>
           )}
         </div>
-      </main>
+      </main> */}
     </div>
   );
 }
