@@ -10,12 +10,13 @@ import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import AuthContext from './store/authContext';
 import Header from './components/Header';
+import Poses from './components/Pose';
 
 function App() {
   const [poses, setPoses] = useState([]);
   const [note,setNote]=useState({})
   const [selectedPose, setSelectedPose] = useState(null);
-
+  const authCtx = useContext(AuthContext);
   const deleteCard=async(id)=>{
     try{
        let result= await axios.delete(
@@ -25,6 +26,7 @@ function App() {
       console.log(e)
     }
   }
+
   const updateCard=async(e,id)=>{
     e.preventDefault();
     try{
@@ -40,7 +42,7 @@ function App() {
     const fetchData = async () => {
       try{
       const result = await axios(
-        'http://localhost:3000/loadAll/userId'
+        `http://localhost:3000/loadAll/${authCtx.userId}`
       );
      setPoses(result.data.sort((a,b)=>a-b));
      
@@ -54,7 +56,7 @@ function App() {
   const handlePoseSelect = (pose) => {
     setSelectedPose(pose);
   };
-  const authCtx = useContext(AuthContext);
+  
   return (
     <div className="App">
 
@@ -80,6 +82,7 @@ function App() {
         <Route path='/auth' element={!authCtx.token ? <Auth/> : <Navigate to='/'/>}/>
         <Route path="/dashboard" element={authCtx.token ? <Dashboard /> : <Navigate to="/auth" />}/>
         <Route path='*' element={<Navigate to='/'/>}/>
+        <Route path="/poses" element={<Poses />}/>
         </Routes>
       {/* <header>
         <h1>Yoga Poses</h1>
