@@ -3,27 +3,27 @@ const { Poses } = require("../models/poses");
 module.exports = {
 loadAllCards:async (req, res) => {
     console.log("loadAllCards")
-    res.send("successfull")
-    /*
+    
     try {
-        const { userId } = req.body;
-        let foundCards= await User.findAll({ where: { user_id:userId } });
+        const userId  = req.params.userId;
+        let foundCards= await Poses.findAll({ where: { userId:userId } })
 
         if(foundCards && foundCards.length>0){
             res.stateCode=200
-            res.send(foundCards)
+           res.send(foundCards)
+        
+        }else{
+            res.sendStatus(404)
         }
-
+    
+    
     }catch(e){
-        console.log("Registration Error");
-        console.log(error);
-        res.sendStatus(400);
+       
+        res.sendStatus(400)
     }
-    */
+    
 },
 addCard:async (req, res)=>{
-
-
 
 try{
  
@@ -35,9 +35,7 @@ try{
    
      if(card){
   
-       res.sendStatus("200").send("card has been added  successfully")
-     }else{
-      res.sendStatus("400").send("failed")
+       res.status("200").send("card has been added  successfully")
      }
   
 
@@ -46,15 +44,61 @@ try{
 
     
       res.sendStatus(400);
-      res.send("Error happened")
+ 
   
   }
 
 
 }
  
+,
+deleteCard:async (req, res) => {
+    console.log("deleteCard")
+    
+    try {
+        
+        const cardId=req.params.cardId;
+        let deleteCard= await Poses.destroy({ where: { id:cardId } })
 
+        if(deleteCard==1){
+            res.stateCode=200
+           res.send("Card with id :"+cardId+" has been deleteed successfully")
+        
+        }else{
+            res.sendStatus(404)
+        }
+    
+    
+    }catch(e){
+       
+        res.sendStatus(400)
+    }
+    
+}
+,
+updateCard:async (req, res) => {
+    console.log("deleteCard")
+    
+    try {
+        
+        const cardId=req.params.cardId;
+        let upadateStatus= await Poses.update(req.body , { where: { id:cardId } })
 
+        if(upadateStatus==1){
+            res.stateCode=200
+           res.send("Card with id : "+cardId+" has been updated successfully")
+        
+        }else{
+            res.sendStatus(404)
+        }
+    
+    
+    }catch(e){
+       
+        res.sendStatus(400)
+    }
+    
+}
 
 
 }

@@ -11,17 +11,43 @@ import AuthContext from './store/authContext';
 
 function App() {
   const [poses, setPoses] = useState([]);
+  const [note,setNote]=useState({})
   const [selectedPose, setSelectedPose] = useState(null);
+
+  const deleteCard=async(id)=>{
+    try{
+       let result= await axios.delete(
+        `http://localhost:3000/deleteCard/${id}`
+      );
+    }catch(e){
+      console.log(e)
+    }
+  }
+  const updateCard=async(e,id)=>{
+    e.preventDefault();
+    try{
+      let result= await axios.put(
+       `http://localhost:3000/updateCard/${id}`,{notes:note[id]}
+     );
+   }catch(e){
+     console.log(e)
+   }
+  }
 
   useEffect(() => {
     const fetchData = async () => {
+      try{
       const result = await axios(
-        'https://your-yoga-api.com/poses'
+        'http://localhost:3000/loadAll/userId'
       );
-      setPoses(result.data);
+     setPoses(result.data.sort((a,b)=>a-b));
+     
+      }catch(e){
+        console.log(e)
+      }
     };
     fetchData();
-  }, []);
+  }, [poses]);
 
   const handlePoseSelect = (pose) => {
     setSelectedPose(pose);
@@ -29,6 +55,24 @@ function App() {
   const authCtx = useContext(AuthContext);
   return (
     <div className="App">
+
+   
+        {poses.map((data)=>{
+       
+          return (<div  ><h1>{data.notes}</h1>
+          <button onClick={()=>{deleteCard(data.id)}}>delete</button>
+        <form onSubmit={(e)=>updateCard(e,data.id)}>
+          <input placeholder='new notes' value={note[data.id]} onChange={(e)=>{
+            setNote({...note,
+            [data.id]:e.target.value})}} />
+        <button type="submit">update</button>
+        </form>
+          </div>)
+        }) }
+       
+
+
+
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/auth' element={!authCtx.token ? <Auth/> : <Navigate to='/'/>}/>
