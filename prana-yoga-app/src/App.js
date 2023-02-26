@@ -7,7 +7,9 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Auth from './components/Auth';
 import Home from './components/Home';
+import Dashboard from './components/Dashboard';
 import AuthContext from './store/authContext';
+import Header from './components/Header';
 
 function App() {
   const [poses, setPoses] = useState([]);
@@ -72,10 +74,11 @@ function App() {
        
 
 
-
+      <Header/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/auth' element={!authCtx.token ? <Auth/> : <Navigate to='/'/>}/>
+        <Route path="/dashboard" element={authCtx.token ? <Dashboard /> : <Navigate to="/auth" />}/>
         <Route path='*' element={<Navigate to='/'/>}/>
         </Routes>
       {/* <header>

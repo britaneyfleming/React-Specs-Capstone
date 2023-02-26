@@ -2,7 +2,7 @@
   "name": "prana-yoga-app",
   "version": "0.1.0",
   "main": "server/index.js",
-  "proxy": "http://localhost:4000/",
+  "proxy": "http://localhost:3001/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -25,7 +25,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "export PORT=3001 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

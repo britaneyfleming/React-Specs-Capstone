@@ -77,11 +77,10 @@ deleteCard:async (req, res) => {
 }
 ,
 updateCard:async (req, res) => {
-    console.log("deleteCard")
-    
     try {
         
         const cardId=req.params.cardId;
+        // const {notes} = req.body;
         let upadateStatus= await Poses.update(req.body , { where: { id:cardId } })
 
         if(upadateStatus==1){

@@ -23,7 +23,7 @@ app.delete("/deleteCard/:cardId",deleteCard)
 app.put("/updateCard/:cardId",updateCard)
 
 sequelize
-    .sync({ force: true })
+    .sync()
     .then(() => {
         app.listen(PORT, () =>
             console.log(

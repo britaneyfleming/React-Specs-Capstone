@@ -2,29 +2,16 @@ import React, { Fragment } from "react";
 import { useContext } from "react";
 import AuthContext from "../store/authContext";
 import Auth from "./Auth";
+import Dashboard from './Dashboard';
 
 const Home = () => {
     const authCtx = useContext(AuthContext);
 
     return (
         <Fragment>
-{authCtx.token ? (
-<div>
-<div>
-    <main>
-        Welcome to my React App
-    </main>
-</div>
-
-<div>
-    <div>
-        App Description
-    </div>
-</div>
-<button onClick={() => authCtx.logout()}>
- Logout
-</button>
-</div>) : (<Auth />)}
+{authCtx.token ? 
+(<Dashboard />)
+ : (<Auth/>) }
 </Fragment>
     );
 };

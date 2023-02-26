@@ -1,4 +1,4 @@
-import {useState, useContext} from 'react'
+import {useState, useContext, Fragment} from 'react'
 import axios from 'axios'
 
 import AuthContext from '../store/authContext';
@@ -38,7 +38,23 @@ const Auth = () => {
             })
     }
     return (
-        <main>
+        <Fragment>
+            <div>
+<div>
+    <main>
+        Welcome to my React App
+    </main>
+</div>
+
+<div>
+    <div>
+        App Description
+    </div>
+</div>
+
+</div>
+
+            <main>
             <h1>{register ? 'Sign Up' : 'Login'}</h1>
             <form onSubmit={submitHandler}>
                 <input 
@@ -62,6 +78,7 @@ const Auth = () => {
                 Need to {register ? 'Login' : 'Sign Up'}?
             </button>
         </main>
+        </Fragment>
     )
 }
 
