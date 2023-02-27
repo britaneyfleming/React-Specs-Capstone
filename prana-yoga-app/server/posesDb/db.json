@@ -36,7 +36,7 @@
         "yt_videos": []
     },
     {
-        "id": 1,
+        "id": 2,
         "sanskrit_name": "Ardha Navasana",
         "english_name": "Half-Boat Pose",
         "procedure": [
@@ -62,11 +62,11 @@
         ],
         "created_at": "",
         "updated_at": "",
-        "image_url": "",
+        "image_url": "https://thumbs.dreamstime.com/b/full-length-active-millennial-woman-doing-half-boat-ardha-navasana-yoga-pose-green-grass-healthy-lifestyle-full-length-261177689.jpg",
         "yt_videos": []
     },
     {
-        "id": 2,
+        "id": 3,
         "sanskrit_name": "Dhanurasana",
         "english_name": "Bow Pose",
         "procedure": [
@@ -108,11 +108,11 @@
         ],
         "created_at": "",
         "updated_at": "",
-        "image_url": "",
+        "image_url": "https://media.istockphoto.com/id/499922918/photo/big-toe-bow-pose.jpg?s=612x612&w=0&k=20&c=RWeAGQBmoGrGf-Cnnmgg9PPuKwjDzXUn1rjxLsCIMIk=",
         "yt_videos": []
     },
     {
-        "id": 3,
+        "id": 4,
         "sanskrit_name": "Setu Bandha Sarvangasana",
         "english_name": "Bridge Pose",
         "procedure": [
@@ -147,11 +147,11 @@
         ],
         "created_at": "",
         "updated_at": "",
-        "image_url": "",
+        "image_url": "https://media.istockphoto.com/id/1286120488/photo/include-exercise-in-your-self-care-routine.jpg?s=612x612&w=0&k=20&c=Lo-7BZlm8C0oAU6WwbNsDRXkfRvmDRXBvrBSFx-PPuM=",
         "yt_videos": []
     },
     {
-        "id": 4,
+        "id": 5,
         "sanskrit_name": "Baddha Konasana",
         "english_name": "Butterfly Pose",
         "procedure": [
@@ -187,11 +187,11 @@
         ],
         "created_at": "",
         "updated_at": "",
-        "image_url": "",
+        "image_url": "https://s3.envato.com/files/348536306/131_E39A1424.jpg",
         "yt_videos": []
     },
     {
-        "id": 5,
+        "id": 6,
         "sanskrit_name": "Ustrasana",
         "english_name": "Camel Pose",
         "procedure": [
@@ -220,7 +220,7 @@
         ],
         "created_at": "",
         "updated_at": "",
-        "image_url": "",
+        "image_url": "https://c.stocksy.com/a/es4G00/z9/3832012.jpg",
         "yt_videos": []
     }
 ]

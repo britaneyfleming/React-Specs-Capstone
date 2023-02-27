@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useContext, useCallback, useEffect } from "react";
 import AuthContext from "../store/authContext";
 import Card from "./Card";
-const Dashboard = ({poses,userPoses,deleteCard,addCard}) => {
+const Dashboard = ({poses,userPoses,deleteCard,addCard, getUserPoses}) => {
     const [selectedPos,setSelectedPos]=useState(1)
     const authCtx = useContext(AuthContext);
     const { token, userId } = useContext(AuthContext);

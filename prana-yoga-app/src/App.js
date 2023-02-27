@@ -29,7 +29,17 @@ function App() {
                 authorization: authCtx.token,
             },
         }
-      );
+      
+        ); 
+        let poses=axios.get(`http://localhost:3000/loadAll/${authCtx.userId}`,
+        {
+            headers: {
+                authorization: authCtx.token,
+            },
+        })
+       setUserPoses(poses.data)
+      
+
     }catch(e){
       console.log(e)
     }
@@ -93,7 +103,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/auth' element={!authCtx.token ? <Auth/> : <Navigate to='/'/>}/>
-        <Route path="/dashboard" element={authCtx.token ? <Dashboard userPoses={userPoses} poses={poses} addCard={addCard}  deleteCard={deleteCard}/> : <Navigate to="/auth" />}/>
+        <Route path="/dashboard" element={authCtx.token ? <Dashboard userPoses={userPoses} poses={poses} addCard={addCard}  deleteCard={deleteCard} getUserPoses={getUserPoses} /> : <Navigate to="/auth" />}/>
         <Route path='*' element={<Navigate to='/'/>}/>
         <Route path="/poses" element={<Poses addCard={addCard}/>}/>
       </Routes>
