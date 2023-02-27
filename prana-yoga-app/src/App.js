@@ -6,84 +6,96 @@ import { useContext } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Auth from './components/Auth';
-import Home from './components/Home';
+
 import Dashboard from './components/Dashboard';
 import AuthContext from './store/authContext';
-import Header from './components/Header';
+import Home from './components/Home';
 import Poses from './components/Pose';
 
 function App() {
   const [poses, setPoses] = useState([]);
-  const [note,setNote]=useState({})
-  const [selectedPose, setSelectedPose] = useState(null);
+  const [userPoses,setUserPoses]=useState([])
   const authCtx = useContext(AuthContext);
+
+
+
   const deleteCard=async(id)=>{
     try{
        let result= await axios.delete(
-        `http://localhost:3000/deleteCard/${id}`
+        `http://localhost:3000/deleteCard/${id}`,
+        {
+            headers: {
+                authorization: authCtx.token,
+            },
+        }
       );
     }catch(e){
       console.log(e)
     }
   }
 
+  const addCard=async(selectedCard)=>{
+    axios.post(
+      "http://localhost:3000/addCard/",
+      {userId: authCtx.userId,notes:selectedCard},
+      {
+          headers: {
+              authorization: authCtx.token,
+          },
+      }
+  )
+  .then(() => {
+      getUserPoses();}) 
+  
+  }
+
+  {/*
   const updateCard=async(e,id)=>{
     e.preventDefault();
     try{
       let result= await axios.put(
-       `http://localhost:3000/updateCard/${id}`,{notes:note[id]}
+       `http://localhost:3000/updateCard/${id}`,{notes:"1"}
      );
    }catch(e){
      console.log(e)
    }
   }
-
+*/}
+ const getUserPoses = () => {
+      axios
+          .get(`http://localhost:3000/loadAll/${authCtx.userId}`,
+          {
+              headers: {
+                  authorization: authCtx.token,
+              },
+          })
+          .then((res) => setUserPoses(res.data))
+          .catch((err) => console.log(err));
+  }
+ 
   useEffect(() => {
-    const fetchData = async () => {
-      try{
-      const result = await axios(
-        `http://localhost:3000/loadAll/${authCtx.userId}`
-      );
-     setPoses(result.data.sort((a,b)=>a-b));
-     
-      }catch(e){
-        console.log(e)
-      }
-    };
-    fetchData();
-  }, [poses]);
 
-  const handlePoseSelect = (pose) => {
-    setSelectedPose(pose);
-  };
+   
+    if(authCtx.userId !=""){
+      axios.get("http://localhost:3000/pullPoses").then(res => setPoses(res.data))
+    getUserPoses()
+    }
+  }, [authCtx.userId]);
+
+
   
   return (
     <div className="App">
 
    
-        {poses.map((data)=>{
-       
-          return (<div  ><h1>{data.notes}</h1>
-          <button onClick={()=>{deleteCard(data.id)}}>delete</button>
-        <form onSubmit={(e)=>updateCard(e,data.id)}>
-          <input placeholder='new notes' value={note[data.id]} onChange={(e)=>{
-            setNote({...note,
-            [data.id]:e.target.value})}} />
-        <button type="submit">update</button>
-        </form>
-          </div>)
-        }) }
-       
-
-
-      <Header/>
+  
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/auth' element={!authCtx.token ? <Auth/> : <Navigate to='/'/>}/>
-        <Route path="/dashboard" element={authCtx.token ? <Dashboard /> : <Navigate to="/auth" />}/>
+        <Route path="/dashboard" element={authCtx.token ? <Dashboard userPoses={userPoses} poses={poses} addCard={addCard}  deleteCard={deleteCard}/> : <Navigate to="/auth" />}/>
         <Route path='*' element={<Navigate to='/'/>}/>
-        <Route path="/poses" element={<Poses />}/>
-        </Routes>
+        <Route path="/poses" element={<Poses addCard={addCard}/>}/>
+      </Routes>
       {/* <header>
         <h1>Yoga Poses</h1>
       </header>

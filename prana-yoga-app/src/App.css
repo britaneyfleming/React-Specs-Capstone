@@ -75,113 +75,59 @@
 }
 
 
-/* auth */
-
-.auth-form {
-  width: 300px;
-  height: 200px;
-}
-
-.auth-input {
-  width: 200px;
-}
-
-.auth-msg {
-  margin-bottom: 15px;
-}
-/* Dashboard container */
-.dashboard-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+.card{
+  display:flex;
+  flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
+  gap:5px;
+  border-radius:25px;
+  color:white;
+  box-shadow: 10px 6px 46px -1px rgba(64,14,14,0.71);
+-webkit-box-shadow: 10px 6px 46px -1px rgba(64,14,14,0.71);
+-moz-box-shadow: 10px 6px 46px -1px rgba(64,14,14,0.71);
+background: rgba(255, 255, 255, 0.21);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.3px);
+-webkit-backdrop-filter: blur(6.3px);
+border: 1px solid rgba(255, 255, 255, 0.41);  
+
+padding:50px;
+padding-top:100px;
+width:300px;
+height:400px;
+overflow-y: scroll;
+margin:30px;
+text-align: left;
+}
+.card h1{
+  text-align: center;
+  width:100%;
+  text-shadow: 0px 3px 3px rgba(0,0,0,0.6);
+}
+.card h2{
+  text-align: center;
+  width:100%;
+  text-shadow: 0px 3px 3px rgba(0,0,0,0.6);
+}
+.card summary{
+  margin:10px;
+  padding:10px;
+
+background: rgba(255, 255, 255, 0.38);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5.9px);
+-webkit-backdrop-filter: blur(5.9px);
+border: 1px solid rgba(255, 255, 255, 0.41);
 }
 
-/* Journal entry card */
-.journal-entry-card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  height: 300px;
-  overflow: hidden;
-}
-
-.journal-entry-card:hover {
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.journal-entry-card .card-header {
-  background-color: #f2f2f2;
-  padding: 16px;
-}
-
-.journal-entry-card .card-header h3 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 0;
-}
-
-.journal-entry-card .card-body {
-  padding: 16px;
-}
-
-.journal-entry-card .card-body p {
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-/* Saved yoga pose card */
-.saved-yoga-pose-card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  width: 200px;
-  height: 320px;
-  overflow: hidden;
-}
-
-.saved-yoga-pose-card:hover {
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.saved-yoga-pose-card .card-image {
-  height: 200px;
-  background-color: #f2f2f2;
-  background-position: center;
-  background-size: cover;
-}
-
-.saved-yoga-pose-card .card-header {
-  padding: 16px;
-}
-
-.saved-yoga-pose-card .card-header h3 {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 0;
-}
-
-.saved-yoga-pose-card .card-footer {
-  background-color: #f2f2f2;
-  padding: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.saved-yoga-pose-card .card-footer p {
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-.saved-yoga-pose-card .card-footer button {
-  background-color: #f2f2f2;
-  border: none;
-  cursor: pointer;
-}
-
-.saved-yoga-pose-card .card-footer button:hover {
-  text-decoration: underline;
+.cards{/*container has cards*/
+display:flex;
+flex-direction: row;
+flex-wrap: wrap;
+gap:20px;
+align-items: center;
+justify-content: space-around;
 }

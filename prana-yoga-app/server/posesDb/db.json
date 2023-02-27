@@ -1,18 +1,6 @@
 
 [
-    {
-        "id": 0,
-        "sanskrit_name": "",
-        "english_name": "",
-        "procedure": [],
-        "targets": [],
-        "benefits": [],
-        "contraindications": [],
-        "created_at": "",
-        "updated_at": "",
-        "image_url": "",
-        "yt_videos": []
-    },
+    
     {
         "id": 1,
         "sanskrit_name": "Navasana",

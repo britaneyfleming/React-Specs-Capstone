@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import Card from './Card'
 
-const Pose = () => {
+const Pose = ({addCard}) => {
   const[poses, setPoses]= useState([])
 useEffect(()=> {
   axios.get("http://localhost:3000/pullPoses").then(res => setPoses(res.data))
@@ -9,19 +10,25 @@ useEffect(()=> {
   return (
     <div>
       <h1>Poses</h1>
-      <p>sanskrit_name{poses.map(p=>{
-        return <div className='cards'>
-          <p>{p.sanskrit_name}</p>
-          <p>{p.english_name}</p>
-          <p>{p.procedure}</p>
-          <p>{p.targets}</p>
-          <p>{p.benefits}</p>
-          <p>{p.contraindications}</p>
-          <p>{p.updated_at}</p>
-          <p>{p.image_url}</p>
+      <div className='cards'>
         
-        </div>
-      })}</p>
+     {poses.map(p=>{
+        return (<div>
+        <Card
+          name={p.sanskrit_name}
+          englishName={p.english_name}
+          procedure={p.procedure}
+          targets={p.targets}
+          benefits={p.benefits}
+          contraindications={p.contraindications}
+          updatedAt={p.updated_at}
+          image={p.image_url}
+        />
+        <button onClick={()=>{addCard(p.id)}}>addThisCard</button>
+        </div>)
+        
+        
+      })}</div>
 
     </div>
   )
