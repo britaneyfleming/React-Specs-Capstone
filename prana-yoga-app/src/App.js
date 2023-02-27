@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard';
 import AuthContext from './store/authContext';
 import Home from './components/Home';
 import Poses from './components/Pose';
+import Header from './components/Header';
 
 function App() {
   const [poses, setPoses] = useState([]);
@@ -88,7 +89,7 @@ function App() {
     <div className="App">
 
    
-  
+  <Header/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/auth' element={!authCtx.token ? <Auth/> : <Navigate to='/'/>}/>

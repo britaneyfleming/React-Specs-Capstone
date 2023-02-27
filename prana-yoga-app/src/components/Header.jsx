@@ -18,6 +18,11 @@ const Header = () => {
                             </NavLink>
                         </li>
                         <li>
+                        <NavLink to="/poses">
+                                <button>Poses</button>
+                            </NavLink> 
+                        </li>
+                        <li>
                             <button
                     
                                 onClick={() => authCtx.logout()}>

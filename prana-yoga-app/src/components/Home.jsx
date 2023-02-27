@@ -9,7 +9,7 @@ const Home = () => {
 
     return (
         <Fragment>
-        <Header/>
+        
 {!authCtx.token && (<Auth/>) }
 </Fragment>
     );

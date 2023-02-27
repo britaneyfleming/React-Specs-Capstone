@@ -1,7 +1,7 @@
 const Card=({name,englishName,procedure,targets,benefits,contraindications,updatedAt,image})=>{
 
 return(
-<div style={{backgroundImage:"url(https://iiif.wellcomecollection.org/image/N0038030/full/300,/0/default.jpg)"
+<div style={{backgroundImage:`url(${image})`
 ,backgroundPosition: 'center',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat'}} className='card'>
