@@ -31,7 +31,7 @@ function App() {
         }
       
         ); 
-        let poses=axios.get(`http://localhost:3000/loadAll/${authCtx.userId}`,
+        let poses= await axios.get(`http://localhost:3000/loadAll/${authCtx.userId}`,
         {
             headers: {
                 authorization: authCtx.token,
